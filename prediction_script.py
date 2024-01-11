@@ -1,5 +1,3 @@
-# prediction_script.py
-
 import numpy as np
 import pandas as pd
 import xgboost as xgb
@@ -14,29 +12,53 @@ def load_models():
                                 max_depth=5, alpha=10, n_estimators=100)
     rf_model = RandomForestRegressor(n_estimators=1000, max_depth=5, random_state=42)
 
+    # Load the XGBoost model using native method
     xg_model.load_model('housePrediction.model')
+
+    # Load the RandomForest model using joblib
     rf_model = joblib.load('housePredictionModel.joblib')
 
     return xg_model, rf_model
 
+
 def preprocess_input(input_data):
     # Drop the 'Price' key from the dictionary if it exists
     input_data.pop('Price', None)
-    return input_data
 
+    print('preprocess_input: ', input_data)
+    print(input_data)
+
+    # Convert the input data to a DataFrame
+    input_df = pd.DataFrame([input_data])
+    print('input_df: ', input_df)
+
+    # Map 'Neighborhood' to numeric labels
+    neighborhood_mapping = {'Urban': 2, 'Suburb': 1, 'Rural': 0}
+    input_df['Neighborhood'] = input_df['Neighborhood'].map(neighborhood_mapping)
+
+    # Extract the values from the DataFrame
+    input_df_values = input_df.values
+    print('input_df_values: ', input_df_values)
+
+    return input_df_values
 
 
 def make_predictions(input_data, xg_model, rf_model):
     preprocessed_input = preprocess_input(input_data)
-    X_input = preprocessed_input
+    print('swag')
+    print('swag', preprocessed_input)
+    X_input_rf = pd.DataFrame(preprocessed_input)
 
-    # Convert input data to DataFrame for XGBoost
-    X_input_df = pd.DataFrame([X_input])
+    # Print features of the XGBoost model
+    print("XGBoost Model Features:", xg_model.get_booster().feature_names)
 
-    # Convert DataFrame to DMatrix for XGBoost
-    X_input_dmatrix = xgb.DMatrix(data=X_input_df, enable_categorical=True)
+    # Print features of the RandomForest model
+    print("RandomForest Model Features:", X_input_rf.columns.tolist())
 
-    y_pred_xg = xg_model.predict(X_input_dmatrix)
-    y_pred_rf = rf_model.predict(X_input)
+    # XGBoost prediction
+    y_pred_xg = xg_model.predict(X_input_rf)
+
+    # Random Forest prediction
+    y_pred_rf = rf_model.predict(X_input_rf)
 
     return y_pred_xg, y_pred_rf

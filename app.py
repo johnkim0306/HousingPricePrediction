@@ -20,6 +20,7 @@ def index():
         print(input_data)
 
         predictions_xg, predictions_rf = make_predictions(input_data, xg_model, rf_model)
+        print('app.py: ', predictions_xg, predictions_rf)
 
         return render_template("index.html", predictions_xg=predictions_xg, predictions_rf=predictions_rf)
 
