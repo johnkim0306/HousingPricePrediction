@@ -1,1 +1,3 @@
 housing_price_dataset.csv
+*.pyc
+__pycache__/
