@@ -3,4 +3,4 @@ pandas
 xgboost
 scikit-learn
 joblib
-Flask
+Flask==3.0.0
