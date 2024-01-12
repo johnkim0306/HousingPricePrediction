@@ -37,7 +37,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flight Price Prediction</title>
+    <title>House Price Prediction</title>
 
 
     <!-- BootStrap -->
@@ -51,7 +51,7 @@
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand" href="/" style='color: #e1f4f3;'>FLIGHT PRICE</a>
+                <a class="navbar-brand" href="/" style='color: #e1f4f3;'>House PRICE</a>
             </div>
         </div>
     </nav>
@@ -136,7 +136,7 @@
         {% endif %}
         {% if predictions_xg is not none %}
             <!-- Only display this HTML block if predictions_xg is not None -->
-            <h1 style='text-align: center;color: rgb(3, 3, 3);'><b>{{ predictions_xg }}</b></h1>
+            <h1 style='text-align: center;color: rgb(3, 3, 3);'><b>{{ predictions_xg[0] }}</b></h1>
         {% endif %}
 
         <footer class='text-light bg-dark position-fixed fixed-bottom '>
