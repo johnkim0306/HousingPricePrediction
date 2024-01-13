@@ -1,7 +1,7 @@
 # app.py
 
 from flask import Flask, render_template, request
-from prediction_script import load_models, make_predictions
+from extractors.prediction_script import load_models, make_predictions
 
 
 app = Flask(__name__)
