@@ -3,6 +3,7 @@
 from flask import Flask, render_template, request
 from prediction_script import load_models, make_predictions
 
+
 app = Flask(__name__)
 rf_model = load_models()
 
