@@ -127,14 +127,13 @@
             </div>
         </form>
 
-        {% if predictions_xg is not none %}
+        {% if predictions_rf is not none %}
             <h1 style='text-align: center;color: rgb(17, 17, 14);'><b>Your House is approximately worth around: </b></h1>
         {% else %}
             <h1 style='text-align: center;color: rgb(17, 17, 14);'><b>What is the current value of your housing price?</b></h1>
         {% endif %}
-        {% if predictions_xg is not none %}
-            <h1 style='text-align: center;color: rgb(3, 3, 3);'><b>{{ predictions_xg[0] }}</b></h1>
-            <h1 style='text-align: center;color: rgb(3, 3, 3);'><b>{{ predictions_rf }}</b></h1>
+        {% if predictions_rf is not none %}
+            <h1 style='text-align: center;color: rgb(3, 3, 3);'><b>{{ predictions_rf[0] }}</b></h1>
         {% endif %}
 
         <footer class='text-light bg-dark position-fixed fixed-bottom '>

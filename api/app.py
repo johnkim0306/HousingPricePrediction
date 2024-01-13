@@ -4,7 +4,7 @@ from flask import Flask, render_template, request
 from prediction_script import load_models, make_predictions
 
 app = Flask(__name__)
-xg_model, rf_model = load_models()
+rf_model = load_models()
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
@@ -19,9 +19,9 @@ def index():
 
         print(input_data)
 
-        predictions_xg, predictions_rf = make_predictions(input_data, xg_model, rf_model)
-        print('app.py: ', predictions_xg, predictions_rf)
+        predictions_rf = make_predictions(input_data, rf_model)
+        print('app.py: ', predictions_rf)
 
-        return render_template("index.html", predictions_xg=predictions_xg, predictions_rf=predictions_rf)
+        return render_template("index.html", predictions_rf=predictions_rf)
 
-    return render_template("index.html", predictions_xg=None, predictions_rf=None)
+    return render_template("index.html", predictions_rf=None)
