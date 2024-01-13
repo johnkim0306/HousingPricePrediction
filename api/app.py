@@ -25,7 +25,3 @@ def index():
         return render_template("index.html", predictions_xg=predictions_xg, predictions_rf=predictions_rf)
 
     return render_template("index.html", predictions_xg=None, predictions_rf=None)
-
-
-if __name__ == '__main__':
-    app.run(debug=True)
