@@ -1,8 +1,5 @@
-# app.py
-
 from flask import Flask, render_template, request
-from extractors.prediction_script import load_models, make_predictions
-
+from prediction_script import load_models, make_predictions
 
 app = Flask(__name__)
 rf_model = load_models()
